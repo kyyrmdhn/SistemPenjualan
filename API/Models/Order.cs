@@ -13,10 +13,10 @@ namespace API.Models
         [JsonIgnore, ForeignKey("UserId")]
         public User User { get; set; }
         [JsonIgnore]
-        public DeliveryOrder? DeliveryOrder { get; set; }
+        public DeliveryOrder DeliveryOrder { get; set; }
         [JsonIgnore]
-        public PaymentReceipt? PaymentReceipt { get; set; }
+        public PaymentReceipt PaymentReceipt { get; set; }
         [JsonIgnore]
-        public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
