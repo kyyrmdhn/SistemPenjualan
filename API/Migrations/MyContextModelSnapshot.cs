@@ -22,6 +22,28 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("API.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("API.Models.DeliveryOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -128,6 +150,9 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -145,22 +170,12 @@ namespace API.Migrations
                     b.Property<byte[]>("ProductPic")
                         .HasColumnType("varbinary(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("API.Models.ProductDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductDetails");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("API.Models.Role", b =>
@@ -222,6 +237,17 @@ namespace API.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("API.Models.Category", b =>
+                {
+                    b.HasOne("API.Models.Product", "Product")
+                        .WithMany("Categories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("API.Models.DeliveryOrder", b =>
                 {
                     b.HasOne("API.Models.Order", "Order")
@@ -274,17 +300,6 @@ namespace API.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("API.Models.ProductDetail", b =>
-                {
-                    b.HasOne("API.Models.Product", "Product")
-                        .WithOne("ProductDetail")
-                        .HasForeignKey("API.Models.ProductDetail", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("API.Models.User", b =>
                 {
                     b.HasOne("API.Models.Role", "Role")
@@ -298,18 +313,20 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Order", b =>
                 {
-                    b.Navigation("DeliveryOrder");
+                    b.Navigation("DeliveryOrder")
+                        .IsRequired();
 
                     b.Navigation("OrderDetails");
 
-                    b.Navigation("PaymentReceipt");
+                    b.Navigation("PaymentReceipt")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Models.Product", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("Categories");
 
-                    b.Navigation("ProductDetail");
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("API.Models.Role", b =>

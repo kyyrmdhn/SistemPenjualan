@@ -16,6 +16,7 @@ namespace API.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<PaymentReceipt> PaymentReceipts { get; set; }
-        public DbSet<Category> ProductDetails { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
     }
 }

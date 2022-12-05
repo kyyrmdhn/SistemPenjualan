@@ -15,6 +15,8 @@ namespace API.Models
         [Required]
         public int Price { get; set; }
         [Required]
+        public int Stock { get; set; }
+        [Required]
         public string Description { get; set; }
         public byte[]? ProductPic { get; set; }
         public DateTime? CreatedDate { get; set; }

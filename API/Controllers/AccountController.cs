@@ -2,6 +2,7 @@
 using API.Context;
 using API.Repositories.Data;
 using API.ViewModel;
+using API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -93,7 +94,7 @@ namespace API.Controllers
             }
         }
 
-        /*[HttpPost("forgotpassword")]
+        [HttpPost("forgotpassword")]
         public ActionResult ForgotPassword(ForgotPasswordVM forgotPasswordVM)
         {
             try
@@ -101,17 +102,39 @@ namespace API.Controllers
                 var entry = accountRepository.ForgotPassword(forgotPasswordVM);
                 return entry switch
                 {
-                    0 => Ok(new { status = HttpStatusCode.OK, result = emailVM, message = "New Password Request Successfull. Verification email has been sent." }),
-                    1 => BadRequest(new { status = HttpStatusCode.BadRequest, result = emailVM, message = "Request Failed. Email Not Found!" }),
-                    2 => BadRequest(new { status = HttpStatusCode.BadRequest, result = emailVM, message = "Request Failed. Email Found but cant send verification code!" }),
-                    _ => BadRequest(new { status = HttpStatusCode.BadRequest, message = "Request Failed!" })
-
+                    0 => Ok(new 
+                    { 
+                        status = HttpStatusCode.OK, 
+                        result = forgotPasswordVM, 
+                        message = "Success. Password has been changed!" 
+                    }),
+                    1 => BadRequest(new 
+                    { 
+                        status = HttpStatusCode.BadRequest, 
+                        result = forgotPasswordVM, 
+                        message = "Request Failed. New password and confirm password not match!"
+                    }),
+                    2 => BadRequest(new 
+                    { 
+                        status = HttpStatusCode.BadRequest, 
+                        result = forgotPasswordVM, 
+                        message = "Request Failed. Email or name not found!" 
+                    }),
+                    _ => BadRequest(new 
+                    { 
+                        status = HttpStatusCode.BadRequest, 
+                        message = "Request Failed!" 
+                    })
                 };
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { status = HttpStatusCode.InternalServerError, message = ex.Message });
+                return StatusCode(500, new 
+                { 
+                    status = HttpStatusCode.InternalServerError, 
+                    message = ex.Message 
+                });
             }
-        }*/
+        }
     }
 }

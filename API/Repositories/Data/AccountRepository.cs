@@ -87,11 +87,8 @@ namespace API.Repositories.Data
                     Email = registerVM.Email,
                     Password = Hashing.HashPassword(registerVM.Password),
                     CreatedDate = DateTime.Now,
-                    RoleId = registerVM.RoleId,
+                    RoleId = 1,
                 });
-                //var result = myContext.SaveChanges();
-                /*if (result > 0)*/
-                //var id = myContext.Users.SingleOrDefault(x => x.Email.Equals(registerVM.Email)).Id;
                 myContext.SaveChanges();
                 return 0;
             }
@@ -106,14 +103,18 @@ namespace API.Repositories.Data
                 {
                     data.Password = Hashing.HashPassword(forgotPasswordVM.ConfPass);
                     myContext.Entry(data).State = EntityState.Modified;
-                    var resultUser = myContext.SaveChanges();
-                    if (resultUser > 0)
-                    {
-                        return resultUser;
-                    }
+                    myContext.SaveChanges();
+                    return 0;
+                }
+                else
+                {
+                    return 1;
                 }
             }
-            return 0;
+            else
+            {
+                return 2;
+            }
         }
         /*public int ChangePassword(ChangePasswordVM changePasswordVM)
         {
