@@ -13,10 +13,10 @@ namespace API.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<DeliveryOrder> DeliveryOrders { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<PaymentReceipt> PaymentReceipts { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
     }
 }

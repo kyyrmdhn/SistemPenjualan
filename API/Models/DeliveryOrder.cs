@@ -12,6 +12,6 @@ namespace API.Models
         public string Status { get; set; }
         public int OrderId { get; set; }
         [JsonIgnore, ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

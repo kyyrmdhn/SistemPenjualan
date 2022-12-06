@@ -11,6 +11,7 @@ builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<PaymentRepository>();
 
 // Add services to the container.
 

@@ -11,12 +11,12 @@ namespace API.Models
         public DateTime OrderDate { get; set; }
         public int UserId { get; set; }
         [JsonIgnore, ForeignKey("UserId")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
         [JsonIgnore]
-        public DeliveryOrder DeliveryOrder { get; set; }
+        public virtual DeliveryOrder DeliveryOrder { get; set; }
         [JsonIgnore]
-        public PaymentReceipt PaymentReceipt { get; set; }
+        public virtual PaymentReceipt PaymentReceipt { get; set; }
         [JsonIgnore]
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-body">
+        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#modal-create">+ Add Category</button>
+        <table class="table table-bordered table-hover" id="tableCategory">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!--CREATE MODAL-->
+    <div class="modal fade" id="modal-create" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Category</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="quickForm" novalidate="novalidate">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Category Name</label>
+                            <input type="text" name="name" class="form-control is-invalid" id="nameCategory"
+                                placeholder="Enter category name" aria-describedby="name-error">
+                            <span id="name-error" class="error invalid-feedback">Please enter a category name!</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="btnSave" onclick="create()">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MODAL -->
+    <div class="modal fade" id="modal-edit" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Category</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="quickForm" novalidate="novalidate">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nameEdit">Category Name</label>
+                            <input type="text" name="name" class="form-control is-invalid" id="nameEdit"
+                                placeholder="Enter category name" aria-describedby="name-error">
+                            <span id="name-error" class="error invalid-feedback">Please enter a category name!</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="btnEdit">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/category.js"></script>

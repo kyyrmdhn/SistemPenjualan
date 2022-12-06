@@ -10,5 +10,34 @@ namespace API.Repositories.Data
         {
             this.myContext = myContext;
         }
+        public string CreateData(Category category)
+        {
+            var checkName = myContext.Categories.Any(x => x.Name == category.Name);
+            if (checkName)
+            {
+                return "1";
+            }
+            else
+            {
+                myContext.Categories.Add(new Category { Name = category.Name });
+                myContext.SaveChanges();
+                return "0";
+            }
+        }
+        public string UpdateData(Category category)
+        {
+            var checkName = myContext.Categories.Any(x => x.Name == category.Name);
+            if (checkName)
+            {
+                return "1";
+            }
+            else
+            {
+                myContext.Set<Category>().Update(category);
+                myContext.SaveChanges();
+                return "0";
+            }
+        }
+
     }
 }

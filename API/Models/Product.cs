@@ -11,8 +11,6 @@ namespace API.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Category { get; set; }
-        [Required]
         public int Price { get; set; }
         [Required]
         public int Stock { get; set; }
@@ -20,10 +18,10 @@ namespace API.Models
         public string Description { get; set; }
         public byte[]? ProductPic { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         [JsonIgnore, ForeignKey("CategoryId")]
-        public ICollection<Category> Categories { get; set; }
+        public virtual Category Category { get; set; }
         [JsonIgnore]
-        public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

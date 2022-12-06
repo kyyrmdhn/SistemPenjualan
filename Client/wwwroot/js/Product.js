@@ -35,9 +35,9 @@ $(document).ready(function () {
                 data: "id",
                 render: (data) => {
                     return `
-                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal" onclick="editProduct(${data})">Edit</a> |
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detailProductModal" onclick="showDetail(${data})">Detail</a> |
-                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal" onclick="showDelete(${data})">Delete</a>
+                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal" onclick="editProduct(${data.id})">Edit</a> |
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detailProductModal" onclick="showDetail(${data.id})">Detail</a> |
+                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal" onclick="showDelete(${data.id})">Delete</a>
                 `;
                 }
             }
@@ -48,28 +48,14 @@ $(document).ready(function () {
 })
 
 function newProduct() {
-    let data;
-    let Id = 0;
-    let Name = $('#ProductName').val();
-    let Category = $('#ProductCategory').val();
-    let Price = $('#ProducPrice').val();
-    let Description = $('#ProducDescription').val();
-    let ProductPic = $('#ProducPic').val();
-    let CreatedDate = $('#CreatedDate').val();
-    let CategoryId = $('#CategoryId').val();
-
-    data = {
-        "id": Id,
-        "name": Name,
-        "category": Category,
-        "price": Price,
-        "description": Description,
-        "productPic": ProductPic,
-        "createdDate": CreatedDate,
-        "categoryId": CategoryId
-    }
-
-    console.log(data);
+    let data = new Object;
+    data.id = 0;
+    data.name = $('#ProductName').val();
+    data.price = $('#ProducPrice').val();
+    data.stock = $('#ProductStock').val();
+    data.description = $('#ProducDescription').val();
+    data.productPic = $('#ProducPic').val();
+    data.categoryId = $('#CategoryId').val();
 
     $.ajax({
         url: 'https://localhost:7254/api/Product',
@@ -82,10 +68,13 @@ function newProduct() {
         success: function (data) {
             Swal.fire(
                 'Done!',
-                'Update Data Successfull' + data,
+                `${data.message}`,
                 'Success'
             );
             location.reload();
+        },
+        error: function (err) {
+            alert(err)
         }
     });
 }

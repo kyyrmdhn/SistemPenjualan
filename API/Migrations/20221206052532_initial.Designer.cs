@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20221203075322_optimizetable")]
-    partial class optimizetable
+    [Migration("20221206052532_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,23 @@ namespace API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("API.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
 
             modelBuilder.Entity("API.Models.DeliveryOrder", b =>
                 {
@@ -92,6 +109,27 @@ namespace API.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("API.Models.PaymentMethod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentMethods");
+                });
+
             modelBuilder.Entity("API.Models.PaymentReceipt", b =>
                 {
                     b.Property<int>("Id")
@@ -106,13 +144,15 @@ namespace API.Migrations
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.HasIndex("PaymentId")
                         .IsUnique();
 
                     b.ToTable("PaymentReceipts");
@@ -126,11 +166,11 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Category")
+                    b.Property<int?>("CategoryId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -145,25 +185,16 @@ namespace API.Migrations
                         .HasColumnType("int");
 
                     b.Property<byte[]>("ProductPic")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("API.Models.ProductDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductDetails");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("API.Models.Role", b =>
@@ -195,7 +226,7 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -274,18 +305,26 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("API.Models.ProductDetail", b =>
-                {
-                    b.HasOne("API.Models.Product", "Product")
-                        .WithOne("ProductDetail")
-                        .HasForeignKey("API.Models.ProductDetail", "Id")
+                    b.HasOne("API.Models.PaymentMethod", "PaymentMethod")
+                        .WithOne("PaymentReceipt")
+                        .HasForeignKey("API.Models.PaymentReceipt", "PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("Order");
+
+                    b.Navigation("PaymentMethod");
+                });
+
+            modelBuilder.Entity("API.Models.Product", b =>
+                {
+                    b.HasOne("API.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("API.Models.User", b =>
@@ -299,6 +338,11 @@ namespace API.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("API.Models.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("API.Models.Order", b =>
                 {
                     b.Navigation("DeliveryOrder")
@@ -310,12 +354,14 @@ namespace API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("API.Models.PaymentMethod", b =>
+                {
+                    b.Navigation("PaymentReceipt");
+                });
+
             modelBuilder.Entity("API.Models.Product", b =>
                 {
                     b.Navigation("OrderDetails");
-
-                    b.Navigation("ProductDetail")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Models.Role", b =>

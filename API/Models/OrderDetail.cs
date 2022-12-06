@@ -15,6 +15,6 @@ namespace API.Models
         public int TotalPrice { get; set; }
         public int ProductId { get; set; }
         [JsonIgnore, ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

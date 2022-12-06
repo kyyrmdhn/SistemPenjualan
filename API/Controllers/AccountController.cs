@@ -29,19 +29,16 @@ namespace API.Controllers
                     "1" => BadRequest(new
                     {
                         statusCode = HttpStatusCode.BadRequest,
-                        result = loginVM,
                         message = "Login Failed. Wrong Password!"
                     }),
                     "2" => BadRequest(new
                     {
                         statusCode = HttpStatusCode.BadRequest,
-                        result = loginVM,
                         message = "Login Failed. Email Not Found!"
                     }),
                     _ => Ok(new
                     {
                         statusCode = HttpStatusCode.OK,
-                        login,
                         message = "Login Successfull!"
                     })
                 };
@@ -67,19 +64,16 @@ namespace API.Controllers
                     0 => Ok(new
                     {
                         statusCode = HttpStatusCode.OK,
-                        result = registerVM,
                         message = "Register Successfull!"
                     }),
                     1 => BadRequest(new
                     {
                         statusCode = HttpStatusCode.BadRequest,
-                        result = registerVM,
                         message = "Register Failed. Email already exists!"
                     }),
                     2 => BadRequest(new
                     {
                         statusCode = HttpStatusCode.BadRequest,
-                        result = registerVM,
                         message = "Register Failed. Phone already exists!"
                     })
                 };
@@ -105,19 +99,16 @@ namespace API.Controllers
                     0 => Ok(new 
                     { 
                         status = HttpStatusCode.OK, 
-                        result = forgotPasswordVM, 
                         message = "Success. Password has been changed!" 
                     }),
                     1 => BadRequest(new 
                     { 
                         status = HttpStatusCode.BadRequest, 
-                        result = forgotPasswordVM, 
                         message = "Request Failed. New password and confirm password not match!"
                     }),
                     2 => BadRequest(new 
                     { 
                         status = HttpStatusCode.BadRequest, 
-                        result = forgotPasswordVM, 
                         message = "Request Failed. Email or name not found!" 
                     }),
                     _ => BadRequest(new 
