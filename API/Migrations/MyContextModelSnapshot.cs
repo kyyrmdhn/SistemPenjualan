@@ -165,7 +165,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -318,9 +317,7 @@ namespace API.Migrations
                 {
                     b.HasOne("API.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
@@ -343,13 +340,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Order", b =>
                 {
-                    b.Navigation("DeliveryOrder")
-                        .IsRequired();
+                    b.Navigation("DeliveryOrder");
 
                     b.Navigation("OrderDetails");
 
-                    b.Navigation("PaymentReceipt")
-                        .IsRequired();
+                    b.Navigation("PaymentReceipt");
                 });
 
             modelBuilder.Entity("API.Models.PaymentMethod", b =>
@@ -364,8 +359,7 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Role", b =>
                 {
-                    b.Navigation("User")
-                        .IsRequired();
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("API.Models.User", b =>

@@ -29,7 +29,7 @@ namespace API.Controllers
                     "1" => BadRequest(new
                     {
                         statusCode = HttpStatusCode.BadRequest,
-                        message = "Login Failed. Wrong Password!"
+                        message = "Login Failed. Wrong Password!",
                     }),
                     "2" => BadRequest(new
                     {
@@ -39,7 +39,8 @@ namespace API.Controllers
                     _ => Ok(new
                     {
                         statusCode = HttpStatusCode.OK,
-                        message = "Login Successfull!"
+                        message = "Login Successfull!",
+                        token = login
                     })
                 };
             }

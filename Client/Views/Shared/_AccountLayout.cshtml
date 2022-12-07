@@ -1,0 +1,32 @@
+﻿<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AdminLTE 3 | Registration Page (v2)</title>
+
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+	<link rel="stylesheet" href="~/lib/plugins/fontawesome-free/css/all.min.css">
+
+	<link rel="stylesheet" href="~/lib/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+	<link rel="stylesheet" href="~/lib/dist/css/adminlte.min.css?v=3.2.0">
+	@*<script defer="" referrerpolicy="origin"
+		src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyQWRtaW5MVEUlMjAzJTIwJTdDJTIwUmVnaXN0cmF0aW9uJTIwUGFnZSUyMCh2MiklMjIlMkMlMjJ4JTIyJTNBMC41OTcyNDYzNDEwMjc5ODY5JTJDJTIydyUyMiUzQTEzNjYlMkMlMjJoJTIyJTNBNzY4JTJDJTIyaiUyMiUzQTY1NyUyQyUyMmUlMjIlM0ExMzY2JTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGYWRtaW5sdGUuaW8lMkZ0aGVtZXMlMkZ2MyUyRnBhZ2VzJTJGZXhhbXBsZXMlMkZyZWdpc3Rlci12Mi5odG1sJTIyJTJDJTIyciUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGYWRtaW5sdGUuaW8lMkZ0aGVtZXMlMkZ2MyUyRnBhZ2VzJTJGZm9ybXMlMkZnZW5lcmFsLmh0bWwlMjIlMkMlMjJrJTIyJTNBMjQlMkMlMjJuJTIyJTNBJTIyVVRGLTglMjIlMkMlMjJvJTIyJTNBLTQyMCUyQyUyMnElMjIlM0ElNUIlNUQlN0Q="></script>
+	<script
+		nonce="e4fa92d7-f14e-478a-82e1-ba9f852f6034">(function (w, d) { !function (cM, cN, cO, cP) { cM.zarazData = cM.zarazData || {}; cM.zarazData.executed = []; cM.zaraz = { deferred: [], listeners: [] }; cM.zaraz.q = []; cM.zaraz._f = function (cQ) { return function () { var cR = Array.prototype.slice.call(arguments); cM.zaraz.q.push({ m: cQ, a: cR }) } }; for (const cS of ["track", "set", "debug"]) cM.zaraz[cS] = cM.zaraz._f(cS); cM.zaraz.init = () => { var cT = cN.getElementsByTagName(cP)[0], cU = cN.createElement(cP), cV = cN.getElementsByTagName("title")[0]; cV && (cM.zarazData.t = cN.getElementsByTagName("title")[0].text); cM.zarazData.x = Math.random(); cM.zarazData.w = cM.screen.width; cM.zarazData.h = cM.screen.height; cM.zarazData.j = cM.innerHeight; cM.zarazData.e = cM.innerWidth; cM.zarazData.l = cM.location.href; cM.zarazData.r = cN.referrer; cM.zarazData.k = cM.screen.colorDepth; cM.zarazData.n = cN.characterSet; cM.zarazData.o = (new Date).getTimezoneOffset(); if (cM.dataLayer) for (const cZ of Object.entries(Object.entries(dataLayer).reduce(((c_, da) => ({ ...c_[1], ...da[1] }))))) zaraz.set(cZ[0], cZ[1], { scope: "page" }); cM.zarazData.q = []; for (; cM.zaraz.q.length;) { const db = cM.zaraz.q.shift(); cM.zarazData.q.push(db) } cU.defer = !0; for (const dc of [localStorage, sessionStorage]) Object.keys(dc || {}).filter((de => de.startsWith("_zaraz_"))).forEach((dd => { try { cM.zarazData["z_" + dd.slice(7)] = JSON.parse(dc.getItem(dd)) } catch { cM.zarazData["z_" + dd.slice(7)] = dc.getItem(dd) } })); cU.referrerPolicy = "origin"; cU.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(cM.zarazData))); cT.parentNode.insertBefore(cU, cT) };["complete", "interactive"].includes(cN.readyState) ? zaraz.init() : cM.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
+*@</head>
+
+<body>
+	@RenderBody()
+
+	<script src="~/lib/plugins/jquery/jquery.min.js"></script>
+
+	<script src="~/lib/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<script src="~/lib/dist/js/adminlte.min.js?v=3.2.0"></script>
+
+</body>
+</html>

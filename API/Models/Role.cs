@@ -10,6 +10,6 @@ namespace API.Models
         [Required]
         public string Name { get; set; }
         [JsonIgnore]
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
     }
 }
