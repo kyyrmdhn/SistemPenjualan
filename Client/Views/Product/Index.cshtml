@@ -18,21 +18,69 @@
 </div>
 <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <div class="container">
-        <table class="table" id="tableProductUser">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Pic</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">CategoryID</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div>
+            <h3>Shopping Cart</h3>
+            <table id="cart" class="display" cellspacing="0" width="100%">        
+                <thead>
+                    <tr>
+                        <th>ID</th>   
+                        <th></th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Sub Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>        
+                <tfoot>
+                    <tr>
+                        <th>ID</th>   
+                        <th></th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Sub Total</th>
+                        <th>Action</th>
+                    </tr>        
+                </tfoot>
+                <tbody>
+                </tbody>       
+            </table>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+
+            <table class="table" id="tableProductUser">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>ID</th>
+                        <th>Pic</th>
+                        <th>Name</th>
+                        <th>CategoryID</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>ID</th>
+                        <th>Pic</th>
+                        <th>Name</th>
+                        <th>CategoryID</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
     </div>
 </div>
 
@@ -52,6 +100,65 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal fade modal-lg" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Checkout Order</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-sm">
+                            <table class="table" id="tableProductUser">
+                            <thead>
+                                <tr>
+                                    <th>Pic</th>
+                                    <th>Name</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                    <th>Sub Total</th>
+                                </tr>
+                                </thead>
+                            <tbody id="checkoutBody">
+                            </tbody>
+                            <tfoot>                    
+                            </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm" id="totalAmount">
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-lg" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">            
+            <div class="modal-body">
+                <h4>Confirm Order?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirmBtn">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
