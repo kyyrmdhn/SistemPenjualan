@@ -1,0 +1,50 @@
+﻿
+@{
+	Layout = "_AccountLayout";
+	ViewData["Title"] = "Login";
+}
+
+<div class="login-page" style="min-height: 466px;">
+	<div class="login-box">
+
+		<div class="card card-outline card-primary">
+			<div class="card-header text-center">
+				<h1>Sign In</h1>
+			</div>
+			<div class="card-body">
+				<form class="login">
+					<div class="input-group mb-3">
+						<input type="email" class="form-control" placeholder="Email" id="emailL">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" placeholder="Password" id="passwordL">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+						</div>
+					</div>
+				</form>
+
+				<p class="mb-1">
+					<a href="ForgotPassword">I forgot my password</a>
+				</p>
+				<p class="mb-0">
+					<a href="Register" class="text-center">Create account</a>
+				</p>
+			</div>
+
+		</div>
+
+	</div>
+</div>

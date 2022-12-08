@@ -1,3 +1,6 @@
+using Client.Base;
+using Client.Repositories.Data;
+
 namespace Client
 {
     public class Program
@@ -8,6 +11,9 @@ namespace Client
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<Address>();
+            builder.Services.AddScoped<AccountRepository>();
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 

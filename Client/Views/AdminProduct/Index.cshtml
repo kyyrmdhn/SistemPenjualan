@@ -2,7 +2,7 @@
     Layout = "_AdminLayout";
     ViewData["Title"] = "Index";
 }
-
+<link rel="stylesheet" href="~/css/AdminStyle.css">
 <div class="card">
     <div class="card-body">
         <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModal">+ Add Product</button>
@@ -52,13 +52,8 @@
                         <div class="form-group">
                             <label for="exampleInputFile">Product Pict</label>
                             <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="productPict">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
-                                </div>
+                                <input type="file" id="productPict" accept="image/jpeg, image/png, image/jpg">
+                                <div id="display-image"></div>
                             </div>
                         </div>
                         <div class="form-group">

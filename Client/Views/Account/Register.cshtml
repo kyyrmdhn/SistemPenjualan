@@ -1,0 +1,67 @@
+﻿
+@{
+	Layout = "_AccountLayout";
+	ViewData["Title"] = "Register";
+}
+
+<div class="register-page" style="min-height: 542px;">
+	<div class="register-box">
+		<div class="card card-outline card-primary">
+			<div class="card-header text-center">
+				<h1>Sign Up</h1>
+			</div>
+			<div class="card-body">
+				<form class="register">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Name" id="nameR">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Address" id="addressR">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-map-marker"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Phone Number" id="phoneNumberR">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-phone"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="email" class="form-control" placeholder="Email" id="emailR">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" placeholder="Password" id="passwordR">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary btn-block">Register</button>
+						</div>
+
+					</div>
+				</form>
+				<a href="Login" class="text-center">I already have an account</a>
+			</div>
+
+		</div>
+	</div>
+</div>
