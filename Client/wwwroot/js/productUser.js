@@ -170,7 +170,9 @@ $(document).ready(function () {
     });	
 
     $('#confirmBtn').on('click', function () {
-
+        var datetime = Date.now();
+        alert('Order success');
+        location.reload()
     })
 
 });
