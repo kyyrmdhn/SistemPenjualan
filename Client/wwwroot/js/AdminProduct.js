@@ -60,7 +60,8 @@ function getCatId() {
     });
 }
 
-function newProduct() {
+$(".addProduct").submit(function (e) {
+    e.preventDefault()
     let data = new Object;
     data.name = $('#name').val();
     data.stock = $('#stock').val();
@@ -68,7 +69,7 @@ function newProduct() {
     data.description = $('#description').val();
     data.productPic = $('#producPict').val();
     data.categoryId = $('#categoryId').val();
-
+    console.log(data);
     $.ajax({
         url: 'https://localhost:7254/api/Product',
         type: "POST",
@@ -79,7 +80,7 @@ function newProduct() {
         },
         success: function (data) {
             Swal.fire(
-                'Done!',
+                'Good job!',
                 `${data.message}`,
                 'Success'
             );
@@ -89,14 +90,13 @@ function newProduct() {
             alert(err)
         }
     });
-}
-
+})
 
 function getForEdit(id) {
     getCatId();
     $.ajax({
         type: "GET",
-        url: `https://localhost:7254/api/Product/${id}`,
+        url: `https://localhost:7254/api/Product/?id=${id}`,
         success: function (result) {
             $.each(result.data, function (key, val) {
                 $('#nameEdit').attr('value', `${(val.name)}`)
@@ -113,6 +113,7 @@ function getForEdit(id) {
         }
     })
 }
+
 
 function updateProduct(id) {
     let data = new Object;

@@ -2,13 +2,17 @@
     Layout = "_AdminLayout";
     ViewData["Title"] = "Index";
 }
-<<<<<<< HEAD
 <link rel="stylesheet" href="~/css/AdminStyle.css">
-=======
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Product</h1>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<link rel="stylesheet" href="~/css/AdminStyle.css">
-
->>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
 <div class="card">
     <div class="card-body">
         <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModal">+ Add Product</button>
@@ -37,22 +41,13 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="quickForm">
+                <form id="quickForm" class="addProduct" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Product Name</label>
                             <input type="text" name="name" class="form-control" id="name" />
                         </div>
                         <div class="form-group">
-<<<<<<< HEAD
-                            <label for="categoryId">Category</label>
-                            <select class="form-control" name="categoryId" id="categoryId">
-                                <option selected disabled value="">Choose..</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-=======
->>>>>>> bdfa4c6783cddfd296bd5c43af69a05e2522fba4
                             <label for="stock">Stock</label>
                             <input type="number" name="name" class="form-control" id="stock" />
                         </div>
@@ -65,14 +60,6 @@
                             <textarea id="description" class="form-control" rows="4"></textarea>
                         </div>
                         <div class="form-group">
-<<<<<<< HEAD
-                            <label for="exampleInputFile">Product Picture</label>
-                            <div class="input-group">
-                                <input type="file" id="productPict" accept="image/jpeg, image/png, image/jpg">
-                                <div id="display-image"></div>
-                            </div>
-                        </div>                        
-=======
                             <label for="exampleInputFile">Product Pict</label>
                             <div class="input-group">
                                 <input type="file" id="productPict" accept="image/jpeg, image/png, image/jpg">
@@ -85,11 +72,10 @@
                                 <option selected disabled value="">Choose..</option>
                             </select>
                         </div>
->>>>>>> bdfa4c6783cddfd296bd5c43af69a05e2522fba4
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="btnSave" onclick="newProduct()">Save</button>
+                        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
                     </div>
                 </form>
             </div>
@@ -109,10 +95,7 @@
                 <div class="modal-body">
                     <div class="card card-solid">
                         <div class="card-body" id="detailBody">
-<<<<<<< HEAD
-=======
-                            
->>>>>>> bdfa4c6783cddfd296bd5c43af69a05e2522fba4
+
                         </div>
                     </div>
                 </div>
@@ -131,7 +114,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="quickForm">
+                <form id="quickForm" class="editProduct">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Product Name</label>
@@ -143,7 +126,7 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="number" name="name" class="form-control" id="priceEdit" />Rp
+                            <input type="number" name="name" class="form-control" id="priceEdit" />
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -177,8 +160,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 <script src="~/js/AdminProduct.js"></script>
-=======
-<script src="~/js/Product.js"></script>
->>>>>>> bdfa4c6783cddfd296bd5c43af69a05e2522fba4
