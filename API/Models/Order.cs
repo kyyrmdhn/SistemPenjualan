@@ -9,6 +9,8 @@ namespace API.Models
         [Key]
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
+        public string? PaymentStatus { get; set; }
+        public string? ReceivedStatus { get; set; }
         public int UserId { get; set; }
         [JsonIgnore, ForeignKey("UserId")]
         public virtual User User { get; set; }

@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_UserLayout";
+    ViewData["Title"] = "Order";
+}
+
+<div class="page-header min-height-400" style="background-image: url('https://images.unsplash.com/photo-1630752708689-02c8636b9141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2490&q=80')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center">
+                    <h1 class="text-white">YOUR ORDER</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+        <table class="table" id="tableProduct">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Pic?</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>gambar gk tau gmn</td>
+                    <td>Lenovo</td>
+                    <td>Rp 5000</td>
+                    <td>
+                        <button type="button" id="detailButton" class="btn btn-primary">Detail</button>  
+                        <button type="button" id="addButton" class="btn btn-primary">Add</button>
+                    </td>
+                </tr>                          
+            </tbody>
+        </table>
+    </div>
+</div>

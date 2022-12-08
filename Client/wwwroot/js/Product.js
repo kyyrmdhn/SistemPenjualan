@@ -1,5 +1,5 @@
 ﻿let table = null;
-
+getCatId();
 $(document).ready(function () {
     table = $('#tableProduct').DataTable({
         ajax: {
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 }
             },
             {
-                data: "category",
+                data: "stock",
                 render: (data) => {
                     return data;
                 }
@@ -32,13 +32,13 @@ $(document).ready(function () {
                 }
             },
             {
-                data: "id",
-                render: (data) => {
+                data: null,
+                render: function (data, type, row) {
                     return `
-                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal" onclick="editProduct(${data.id})">Edit</a> |
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detailProductModal" onclick="showDetail(${data.id})">Detail</a> |
-                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal" onclick="showDelete(${data.id})">Delete</a>
-                `;
+                    <a class="btn btn-warning" data-toggle="modal" data-target="#editProductModal" onclick="getForEdit(${data.id})"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-info" data-toggle="modal" data-target="#detailProductModal" onclick="showDetail(${data.id})"><i class="fas fa-eye"></i></a>
+                    <a class="btn btn-danger" onclick="showDelete(${data.id})"><i class="fas fa-trash"></i></a>
+                    `
                 }
             }
         ],
@@ -47,15 +47,27 @@ $(document).ready(function () {
     })
 })
 
+function getCatId() {
+    $.ajax({
+        url: `https://localhost:7254/api/Category`
+    }).done((res) => {
+        let category = "";
+        $.each(res.data, function (key, val) {
+            category += `<option value="${val.id}">${val.name}</option>`
+        });
+        $("#categoryId").html(category);
+        $("#categoryIdEdit").html(category);
+    });
+}
+
 function newProduct() {
     let data = new Object;
-    data.id = 0;
-    data.name = $('#ProductName').val();
-    data.price = $('#ProducPrice').val();
-    data.stock = $('#ProductStock').val();
-    data.description = $('#ProducDescription').val();
-    data.productPic = $('#ProducPic').val();
-    data.categoryId = $('#CategoryId').val();
+    data.name = $('#name').val();
+    data.stock = $('#stock').val();
+    data.price = $('#price').val();
+    data.description = $('#description').val();
+    data.productPic = $('#producPic').val();
+    data.categoryId = $('#categoryId').val();
 
     $.ajax({
         url: 'https://localhost:7254/api/Product',
@@ -79,47 +91,37 @@ function newProduct() {
     });
 }
 
-function editProduct(Id) {
+function getForEdit(id) {
+    getCatId();
     $.ajax({
-        url: `https://localhost:7254/api/Product/${Id}`,
-        type: "GET"
-    }).done((res) => {
-        let temp = "";
-
-        $('#edit').html(`
-        <input type = "hidden" class= "form-control" id = "hidenId" readonly placeholder = "" value = "0">
-        <p> Id: <input type="text" class="form-control" id="Id" readonly placeholder="${res.data.id}" value="${res.data.id}">
-        <p> Name: <input type="text" class="form-control" id="ProductName" placeholder="${res.data.name}" value="${res.data.name}">
-        <p> Category: <input type="text" class="form-control" id="ProductCategory" placeholder="${res.data.category}" value="${res.data.category}">
-        <p> Price: <input type="text" class="form-control" id="ProductPrice" placeholder="${res.data.price}" value="${res.data.price}">
-        <p> Description: <input type="text" class="form-control" id="ProductDescription" placeholder="${res.data.description}" value="${res.data.description}">
-        <p> Product Picture: <input type="file" class="form-control" id="ProductPic" placeholder="${res.data.productPic}" value="${res.data.productPic}">
-        `)
-        console.log(res);
-    }).fail((err) => {
-        console.log(err);
-    });
+        type: "GET",
+        url: `https://localhost:7254/api/Product/?id=${id}`,
+        success: function (result) {
+            $.each(result.data, function (key, val) {
+                $('#nameEdit').attr('value', `${(val.name)}`)
+                $('#stockEdit').attr('value', `${(val.stock)}`)
+                $('#priceEdit').attr('value', `${(val.price)}`)
+                $('#descriptionEdit').attr('value', `${(val.description)}`)
+                $('#productPicEdit').attr('value', `${(val.productPic)}`)
+                $('#categoryIdEdit').attr('value', `${(val.categoryId)}`)
+                $('#btnEdit').attr('onclick', `updateProduct(${(val.id)})`)
+            })
+        },
+        error: function (err) {
+            alert(err)
+        }
+    })
 }
 
-function updateProduct() {
-    let data;
-    let Id = parseInt($('#Id').val());
-    let Name = $('#ProducName').val();
-    let Category = $('#ProductCategory').val();
-    let Price = $('#ProducPrice').val();
-    let Description = $('#ProducDescription').val();
-    let ProductPic = $('#ProducPic').val();
-
-    data = {
-        "id": Id,
-        "name": Name,
-        "category": Category,
-        "price": Price,
-        "description": Description,
-        "productPic": ProductPic
-    }
-
-    console.log(data);
+function updateProduct(id) {
+    let data = new Object;
+    data.id = parseInt(id);
+    data.name = $('#nameEdit').val();
+    data.stock = $('#stockEdit').val();
+    data.price = $('#priceEdit').val();
+    data.description = $('#descriptionEdit').val();
+    data.productPic = $('#producPicEdit').val();
+    data.categoryId = $('#categoryIdEdit').val();
 
     $.ajax({
         url: 'https://localhost:7254/api/Product',
@@ -136,6 +138,9 @@ function updateProduct() {
                 'Success'
             )
             location.reload();
+        },
+        error: function (err) {
+            alert(err)
         }
     });
 }
@@ -149,7 +154,7 @@ function showDetail(Id) {
 
         let temp = '';
 
-        $('#modalDetail').html(`
+        $('#detailBody').html(`
         
         <div class=" row my-2">
           <div class="col-4 text-end text-dark fw-semibold">
@@ -211,18 +216,36 @@ function showDetail(Id) {
     })
 }
 
-function showDelete(Id) {
-    $.ajax({
-        url: `https://localhost:7254/api/Product/${Id}`,
-        method: 'DELETE',
-        dataType: 'json',
-        success: function (data) {
-            Swal.fire(
-                'Done!',
-                'Delete Data Successfull' + data,
-                'success'
-            );
-            location.reload();
+function showDelete(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `https://localhost:7254/api/Product?id=${id}`,
+                contentType: "application/json",
+                dataType: "json",
+                type: "delete",
+                success: function (data) {
+                    Swal.fire(
+                        'Deleted!',
+                        `${data.message}`,
+                        'success'
+                    ).then(function () {
+                        location.reload();
+                    })
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            })
+
         }
     })
 }

@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "_UserLayout";
+    ViewData["Title"] = "Products";
+}
+
+
+<div class="page-header min-height-400" style="background-image: url('https://images.unsplash.com/photo-1630752708689-02c8636b9141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2490&q=80')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center">
+                    <h1 class="text-white">PRODUCT</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+        <table class="table" id="tableProductUser">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Pic</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">CategoryID</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Detail Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="detailBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                
+            </div>
+        </div>
+    </div>
+</div>

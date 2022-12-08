@@ -1,120 +1,154 @@
 ﻿@{
-    Layout = "_Adminlayout";
+    Layout = "_AdminLayout";
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/css/AdminStyle.css">
+
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Product</h3>
-        <div class="card-tools">
-            <!-- Buttons, labels, and many other things can be placed here! -->
-            <!-- Here is a label for example -->
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">Create New</button>
-        </div>
-        <!-- /.card-tools -->
-    </div>
-    <!-- /.card-header -->
     <div class="card-body">
-        <table class="display table table-bordered table-hover" id="tableProduct">
+        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModal">+ Add Product</button>
+        <table class="table table-bordered table-hover" id="tableProduct">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Category</th>
+                    <th>Stock</th>
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody class="table-striped">
+            <tbody>
             </tbody>
         </table>
     </div>
-    <!-- /.card-body -->
-    <div class="card-footer">
-        
-    </div>
-    <!-- /.card-footer -->
-</div>
-<!-- /.card -->
 
-@*Modal Create*@
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createModalLabel">Create New</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p> Name : </p> <input type="text" class="form-control" id="ProductName" />
-                <p> Category : </p> <input type="text" class="form-control" id="ProductCategory" />
-                <p> Price : </p> <input type="text" class="form-control" id="ProducPrice" />
-                <p> Description : </p> <input type="text" class="form-control" id="ProducDescription" />
-                <p> Product Pic : </p> <input type="file" class="form-control" id="ProducPic" />
-                <p> Created Date : </p> <input type="text" class="form-control" id="CreatedDate" />
-                <p> Category ID : </p> <input type="text" class="form-control" id="CategoryId" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" onclick="newProduct()">Save</button>
+    @*Modal Create*@
+    <div class="modal fade" id="createModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="quickForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Product Name</label>
+                            <input type="text" name="name" class="form-control" id="name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId">Category</label>
+                            <select class="form-control" name="categoryId" id="categoryId">
+                                <option selected disabled value="">Choose..</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" name="name" class="form-control" id="stock" />
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" name="name" class="form-control" id="price" />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="form-control" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Product Picture</label>
+                            <div class="input-group">
+                                <input type="file" id="productPict" accept="image/jpeg, image/png, image/jpg">
+                                <div id="display-image"></div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="btnSave" onclick="newProduct()">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="detailProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Product</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div id="modalDetail" class="modal-body container">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-@*Edit*@
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="edit">
+    <!-- Modal -->
+    <div class="modal fade" id="detailProductModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-solid">
+                        <div class="card-body" id="detailBody">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" onclick="updateProduct()">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    @*Edit*@
+    <div class="modal fade" id="editProductModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="quickForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Product Name</label>
+                            <input type="text" name="name" class="form-control" id="nameEdit" />
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" name="name" class="form-control" id="stockEdit" />
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" name="name" class="form-control" id="priceEdit" />Rp
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="descriptionEdit" class="form-control" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Product Pict</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="productPictEdit">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId">Category</label>
+                            <select class="form-control" name="categoryId" id="categoryIdEdit">
+                                <option selected disabled value="">Choose..</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="btnEdit">Save Changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div id="modalDelete" class="modal-body container">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="~/js/Product.js"></script>
+<script src="~/js/AdminProduct.js"></script>

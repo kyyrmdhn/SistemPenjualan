@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "_UserLayout";
+    ViewData["Title"] = "Profile";
+}
+
+<div class="page-header min-height-400" style="background-image: url('https://images.unsplash.com/photo-1630752708689-02c8636b9141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2490&q=80')">
+    <span class="mask bg-gradient-dark opacity-6"></span>    
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mx-auto">                
+                <div class="row py-5">
+                    <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="mb-0">Michael Roven</h3>
+                            <div class="d-block">
+                                
+                                <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#edituserModal">Edit</button>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <p class="font-weight-bold">Email : email</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <p class="font-weight-bold">Phone Number : 123456789</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <p class="font-weight-bold">Address : Planet Bekasi</p>
+                        </div>
+                                                
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            @*Edit*@
+            <div class="modal fade" id="edituserModal" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Product</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="quickForm">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control" id="nameEdit" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="stock">Address</label>
+                                    <textarea name="name" class="form-control" id="addressEdit" /></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Phone Number</label>
+                                    <input type="number" name="name" class="form-control" id="priceEdit" />Rp
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Email</label>
+                                    <input type="text" name="email" class="form-control" id="emailEdit" />
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="btnEdit">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

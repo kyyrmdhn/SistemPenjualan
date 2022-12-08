@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "_Adminlayout";
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered table-hover" id="tableOrder">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Order Date</th>
+                    <th>User</th>
+                    <th>Detail Order</th>
+                    <th>Payment Status</th>
+                    <th>Delivery Status</th>
+                    <th>Received Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!--User Detail Modal -->
+    <div class="modal fade" id="modalUserDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">User Detail</h1>
+                </div>
+                <div id="modalUserDetailx" class="modal-body container">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Order Detail Modal -->
+    <div class="modal fade" id="modalOrderDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Order Detail</h1>
+                </div>
+                <div id="modalOrderDetailx" class="modal-body container">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Order Detail Modal -->
+    <div class="modal fade" id="modalDeliveryDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delivery Detail</h1>
+                </div>
+                <div id="modalDeliveryDetailx" class="modal-body container">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MODAL -->
+    <div class="modal fade" id="modal-edit" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Delivery Status</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="quickForm" novalidate="novalidate">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nameEdit">Delivery Status</label>
+                            <select name="deliveryStatus" id="statusEdit">
+                                <option value="belumDikirim">Belum Dikirim</option>
+                                <option value="sedangDikirim">Sedang Diproses</option>
+                                <option value="sudahDikirim">Sudah Dikirim</option>
+                            </select>                            
+                            <span id="name-error" class="error invalid-feedback">Please update delivery status!</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="btnEdit" onclick="edit()">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/AdminOrder.js"></script>
