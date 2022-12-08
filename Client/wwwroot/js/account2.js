@@ -38,56 +38,52 @@
     })
 })
 
-$(".login").submit(function (e) {
-    e.preventDefault();
-    let login = {};
-    login.Email = $("#emailL").val();
-    login.Password = $("#passwordL").val();
-    console.log(login);
-    if (login.Email != "" && login.Password != "") {
-        $.ajax({
-            url: 'https://localhost:7254/api/Account/login',
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify(login),
-            success: function (data) {
-                console.log(data.token);
-                switch (data.statusCode) {
-                    case 200:
-                        Swal.fire(
-                            'Good job!',
-                            `${data.message}`,
-                            'success'
-                        ).then(function () {
-                            window.location.replace('../AdminProduct')
-                        })
-                        break;
-                    default:
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Wrong Email or Password!',
-                        }).then(function () {
-                            location.reload()
-                        })
-                }
-            },
-            error: function () {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Wrong Email or Password!',
-                })
-            }
-        })
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Email and Password Required',
-        })
-    }
-})
+ $(".login").submit(function (e) {
+     e.preventDefault();
+     let login = {};
+     login.Email = $("input[name = 'Email']").val();
+     login.Password = $("input[name='Password']").val();
+     console.log(login);
+     if (login.Email != "" && login.Password != "") {
+         $.ajax({
+             url: 'login',
+             type: 'post',
+             contentType: 'application/json',
+             data: JSON.stringify(login),
+             success: function (data) {
+                 console.log(data);
+                 if (data.statusCode == 200) {
+                     Swal.fire(
+                         'Good job!',
+                         `${data.message}`,
+                         'success'
+                     ).then(function () {
+                         window.location.replace('../AdminProduct')
+                     })
+                 } else {
+                     Swal.fire({
+                         icon: 'error',
+                         title: 'Oops...',
+                         text: 'Error!',
+                     })
+                 }
+             },
+             error: function () {
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: 'Error!',
+                 })
+             }
+         })
+     } else {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops...',
+             text: 'Email and Password Required',
+         })
+     }
+ })
 
 function register() {
     //e.preventDefault();
