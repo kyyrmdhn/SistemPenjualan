@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using API.Models;
 using Client.Base;
 using Client.Repositories.Data;
@@ -31,13 +32,33 @@ namespace Client.Controllers
         {
             return View();
         }
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Client.Controllers
+{
+    public class AccountController : Controller
+    {
+>>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
         public IActionResult Login()
         {
             return View();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
         public IActionResult Register()
         {
             return View();
         }
+<<<<<<< HEAD
+=======
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+>>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
     }
 }

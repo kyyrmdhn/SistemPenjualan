@@ -76,6 +76,12 @@ namespace API.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceivedStatus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -247,8 +253,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId")
-                        .IsUnique();
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -325,8 +330,8 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.User", b =>
                 {
                     b.HasOne("API.Models.Role", "Role")
-                        .WithOne("User")
-                        .HasForeignKey("API.Models.User", "RoleId")
+                        .WithMany("User")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

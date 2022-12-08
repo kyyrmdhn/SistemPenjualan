@@ -1,7 +1,12 @@
 ﻿#display-image {
     width: 400px;
+<<<<<<< HEAD
     height: 225px;/*
     border: 1px solid black;*/
+=======
+    height: 225px;
+    border: 1px solid black;
+>>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
     background-position: center;
     background-size: cover;
 }

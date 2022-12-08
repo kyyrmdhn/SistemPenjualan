@@ -61,7 +61,7 @@ namespace API.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductPic = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,7 +70,8 @@ namespace API.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,6 +106,8 @@ namespace API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReceivedStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -228,8 +231,7 @@ namespace API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
                 table: "Users",
-                column: "RoleId",
-                unique: true);
+                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
