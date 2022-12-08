@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(MyContext))]
+<<<<<<<< HEAD:API/Migrations/20221207135729_initial.Designer.cs
     [Migration("20221207135729_initial")]
     partial class initial
+========
+    [Migration("20221207144540_Initial")]
+    partial class Initial
+>>>>>>>> bdfa4c6783cddfd296bd5c43af69a05e2522fba4:API/Migrations/20221207144540_Initial.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,7 +178,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -325,9 +329,7 @@ namespace API.Migrations
                 {
                     b.HasOne("API.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
@@ -350,13 +352,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Order", b =>
                 {
-                    b.Navigation("DeliveryOrder")
-                        .IsRequired();
+                    b.Navigation("DeliveryOrder");
 
                     b.Navigation("OrderDetails");
 
-                    b.Navigation("PaymentReceipt")
-                        .IsRequired();
+                    b.Navigation("PaymentReceipt");
                 });
 
             modelBuilder.Entity("API.Models.PaymentMethod", b =>

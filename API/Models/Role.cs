@@ -10,6 +10,10 @@ namespace API.Models
         [Required]
         public string Name { get; set; }
         [JsonIgnore]
+<<<<<<< HEAD
         public virtual ICollection<User> User { get; set; }
+=======
+        public virtual User? User { get; set; }
+>>>>>>> bdfa4c6783cddfd296bd5c43af69a05e2522fba4
     }
 }

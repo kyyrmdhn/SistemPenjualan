@@ -28,7 +28,7 @@ namespace Client
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=HomeUser}/{action=Index}/{id?}");
 
             app.Run();
         }

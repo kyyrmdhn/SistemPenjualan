@@ -20,8 +20,8 @@ namespace API.Models
         public DateTime? CreatedDate { get; set; }
         public int? CategoryId { get; set; }
         [JsonIgnore, ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
         [JsonIgnore]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }
