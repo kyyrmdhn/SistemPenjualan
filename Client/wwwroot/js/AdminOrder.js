@@ -60,7 +60,8 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return `<button class="btn btn-default" data-toggle="modal" data-target="#modal-edit" onclick="getForUpdate(${data.id})">Edit</button>`
+                    return `<a class="btn btn-default" data-toggle="modal" data-target="#modalDeliveryEdit" onclick="getDeliveryUpdate(${data.id})"><i class="fas fa-pencil-alt"></i></a>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#modalOrderEdit" onclick="getOrderUpdate(${data.id})"><i class="fas fa-pencil-alt"></i></a>`
                 }
             }
         ],
@@ -225,14 +226,16 @@ function getDeliveryDetail(Id) {
     })
 }
 
-function getForUpdate(Id) {
+let url2 = `https://localhost:7254/api/DeliveryOrder`
+
+function getDeliveryUpdate(Id) {
     $.ajax({
         type: "GET",
-        url: `https://localhost:7254/api/DeliveryOrder/${Id}`,
+        url: url2 + `?id=${Id}`,
         success: function (result) {
             $.each(result.data, function (key, val) {
-                $('#statusEdit').attr('value', `${(val.status)}`)
-                $('#btnEdit').attr('onclick', `edit(${(val.id)})`)
+                $('#statusDeliveryEdit').attr('value', `${(val.status)}`)
+                $('#btnDeliveryEdit').attr('onclick', `edit(${(val.id)})`)
             })
         },
         error: function (err) {
@@ -241,17 +244,67 @@ function getForUpdate(Id) {
     })
 }
 
-function edit() {
-    let category = new Object;
-    category.id = id
-    category.status = $('#statusEdit').val();
+function deliveryEdit() {
+    let deliverData = new Object;
+    deliverData.id = id
+    deliverData.status = $('#statusDeliveryEdit').val();
 
     $.ajax({
-        url: `https://localhost:7254/api/DeliveryOrder`,
+        url: url2,
         contentType: "application/json",
         dataType: "json",
         type: "put",
-        data: JSON.stringify(category),
+        data: JSON.stringify(deliverData),
+        success: function () {
+            Swal.fire(
+                "Done!",
+                `Successfully`,
+                "success"
+            ).then(function () {
+                location.reload();
+            })
+        },
+        error: function (message) {
+            console.log(message);
+            alert(err.message)
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.Message,
+            })
+        }
+    })
+}
+
+function getOrderUpdate(Id) {
+    $.ajax({
+        type: "GET",
+        url: url + `?id=${Id}`,
+        success: function (result) {
+            $.each(result.data, function (key, val) {
+                $('#statusPaymentEdit').attr('value', `${(val.paymentStatus)}`)
+                $('#statusReceivedEdit').attr('value', `${(val.receivedStatus)}`)
+                $('#btnOrderEdit').attr('onclick', `edit(${(val.id)})`)
+            })
+        },
+        error: function (err) {
+            alert(err)
+        }
+    })
+}
+
+function orderEdit() {
+    let orderData = new Object;
+    orderData.id = id
+    orderData.status = $('#statusPaymentEdit').val();
+    orderData.status = $('#statusPaymentEdit').val();
+
+    $.ajax({
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        type: "put",
+        data: JSON.stringify(orderData),
         success: function () {
             Swal.fire(
                 "Done!",
