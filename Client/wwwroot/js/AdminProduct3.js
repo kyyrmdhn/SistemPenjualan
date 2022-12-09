@@ -67,14 +67,27 @@ $(".addProduct").submit(function (e) {
     data.stock = $('#stock').val();
     data.price = $('#price').val();
     data.description = $('#description').val();
-    data.productPic = $('#producPict').val();
+    data.productPic = $('#producPict');
     data.categoryId = $('#categoryId').val();
 
+    var fd = new FormData();
+    var productPic = $('#productPict')[0].files;
+    fd.append('name', data.name);
+    fd.append('stock', data.stock);
+    fd.append('price', data.price);
+    fd.append('description', data.description);
+    fd.append('productPic', productPic);
+    fd.append('categoryId', data.categoryId);
+    console.log(fd);
+    console.log(productPic);/*
+    console.log(data);*/
     $.ajax({
-        url: 'https://localhost:7254/api/Product/',
+        url: 'https://localhost:7254/api/Product/AddProduct',
         type: "POST",
-        data: JSON.stringify(data),
-        contentType: "application/json",
+        //data: JSON.stringify(data),
+        data: fd,
+        contentType: false,
+        processData: false,
         dataType: 'json',
         /*headers: {
             'Content-Type': 'application/json'
@@ -123,9 +136,16 @@ function updateProduct(id) {
     data.stock = $('#stockEdit').val();
     data.price = $('#priceEdit').val();
     data.description = $('#descriptionEdit').val();
-    data.productPic = $('#producPicEdit').val();
+    data.productPic = $('#producPicEdit').files;
     data.categoryId = $('#categoryIdEdit').val();
 
+    var fd = new FormData();
+    fd.append('name', data.name);
+    fd.append('stock', data.stock);
+    fd.append('price', data.price);
+    fd.append('description', data.description);
+    fd.append('productPic', data,productPic);
+    fd.append('categoryId', data.categoryId);
     $.ajax({
         url: 'https://localhost:7254/api/Product',
         type: "PUT",
@@ -222,7 +242,7 @@ function showDelete(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: `https://localhost:7254/api/Product?id=${id}`,
+                url: `https://localhost:7254/api/Product/${id}`,
                 contentType: "application/json",
                 dataType: "json",
                 type: "delete",

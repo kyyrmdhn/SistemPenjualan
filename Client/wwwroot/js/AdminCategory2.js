@@ -58,7 +58,13 @@ $(".addCategory").submit(function (e) {
         data: JSON.stringify(add),
         dataType: "json",
         success: function () {
-            console.log("Success Create Category!");
+            Swal.fire(
+                "Done!",
+                `Successfully`,
+                "success"
+            ).then(function () {
+                location.reload();
+            })
         },
         error: function (err) {
             alert(err);
@@ -69,7 +75,7 @@ $(".addCategory").submit(function (e) {
 function getForUpdate(id) {
     $.ajax({
         type: "GET",
-        url: url+`?id=${id}`,
+        url: url + `?id=${id}`,
         success: function (result) {
             $.each(result.data, function (key, val) {
                 $('#nameEdit').attr('value', `${(val.name)}`)
@@ -94,7 +100,7 @@ function edit(id) {
     )*/
 
     $.ajax({
-        url: url+'/updateData',
+        url: url + '/updateData',
         contentType: "application/json",
         dataType: "json",
         type: "put",
@@ -120,7 +126,7 @@ function edit(id) {
     })
 }
 
-function deleteCategory(id){
+function deleteCategory(id) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -132,7 +138,7 @@ function deleteCategory(id){
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: url+`?id=${id}`,
+                url: url + `?id=${id}`,
                 contentType: "application/json",
                 dataType: "json",
                 type: "delete",

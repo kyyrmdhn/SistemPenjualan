@@ -2,7 +2,6 @@
 using API.Base;
 using API.Models;
 using API.Repositories.Data;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -17,8 +16,6 @@ namespace API.Controllers
             this.repository = repository;
         }
 
-
-        [Authorize(Roles = "Admin")]
         [HttpPost("createData")]
         public ActionResult CreateData(Category category)
         {
@@ -51,7 +48,6 @@ namespace API.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPut("updateData")]
         public ActionResult UpdateData(Category category)
         {

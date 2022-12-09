@@ -38,18 +38,17 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="quickForm" novalidate="novalidate">
+                <form id="quickForm" class="addCategory">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Category Name</label>
-                            <input type="text" name="name" class="form-control is-invalid" id="nameCategory"
-                                placeholder="Enter category name" aria-describedby="name-error">
-                            <span id="name-error" class="error invalid-feedback">Please enter a category name!</span>
+                            <input type="text" name="name" class="form-control" id="nameCategory"
+                                placeholder="Enter category name">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="btnSave" onclick="create()">Save</button>
+                        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
                     </div>
                 </form>
             </div>
@@ -66,13 +65,12 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="quickForm" novalidate="novalidate">
+                <form id="quickForm" class="editCategory">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nameEdit">Category Name</label>
-                            <input type="text" name="name" class="form-control is-invalid" id="nameEdit"
-                                placeholder="Enter category name" aria-describedby="name-error">
-                            <span id="name-error" class="error invalid-feedback">Please enter a category name!</span>
+                            <input type="text" name="name" class="form-control" id="nameEdit"
+                                placeholder="Enter category name">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -85,4 +83,4 @@
     </div>
 </div>
 
-<script src="~/js/AdminCategory.js"></script>
+<script src="~/js/AdminCategory2.js"></script>

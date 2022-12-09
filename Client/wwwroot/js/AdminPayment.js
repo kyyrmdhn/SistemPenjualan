@@ -49,7 +49,8 @@ $(document).ready(function () {
     });
 })
 
-function create() {
+$(".addPayment").submit(function (e) {
+    e.preventDefault()
     let add = {};
     add.name = $("#namePayment").val();
     add.number = $("#numberPayment").val();
@@ -67,7 +68,7 @@ function create() {
             alert(err);
         }
     })
-}
+})
 
 function getForUpdate(id) {
     $.ajax({
