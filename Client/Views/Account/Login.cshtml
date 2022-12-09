@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-﻿
-@{
+﻿@{
 	Layout = "_AccountLayout";
 	ViewData["Title"] = "Login";
 }
@@ -13,9 +11,9 @@
 				<h1>Sign In</h1>
 			</div>
 			<div class="card-body">
-				<form class="login">
+				<form class="login" >
 					<div class="input-group mb-3">
-						<input type="email" class="form-control" placeholder="Email" id="emailL">
+						<input type="email" class="form-control" placeholder="Email" name="Email" id="emailL">
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-envelope"></span>
@@ -23,7 +21,7 @@
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" placeholder="Password" id="passwordL">
+						<input type="password" class="form-control" placeholder="Password" name="Password" id="passwordL">
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-lock"></span>
@@ -48,28 +46,4 @@
 		</div>
 
 	</div>
-=======
-﻿@{
-    Layout = "_LoginLayout";
-    ViewData["Title"] = "Index";
-}
-
-<div class="signup">
-	<form>
-		<label for="chk" aria-hidden="true">Sign up</label>
-		<input type="text" name="txt" placeholder="User name" required="">
-		<input type="email" name="email" placeholder="Email" required="">
-		<input type="password" name="pswd" placeholder="Password" required="">
-		<button>Sign up</button>
-	</form>
-</div>
-
-<div class="login">
-	<form>
-		<label for="chk" aria-hidden="true">Login</label>
-		<input type="email" name="email" placeholder="Email" required="">
-		<input type="password" name="pswd" placeholder="Password" required="">
-		<button>Login</button>
-	</form>
->>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
 </div>

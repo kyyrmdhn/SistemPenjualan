@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-﻿using API.Models;
+
+using API.Models;
 using Client.Base;
 using Client.Repositories.Data;
 using Client.ViewModels;
@@ -15,16 +15,21 @@ namespace Client.Controllers
             this.repository = repository;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public JsonResult Register(RegisterVM registerVM)
         {
             var result = repository.Register(registerVM);
             return Json(result);
-        }
+        }*/
         [HttpPost]
-        public JsonResult Login(LoginVM loginVM)
+        public async Task<JsonResult> Login([FromBody]LoginVM loginVM)
         {
-            var result = repository.Login(loginVM);
+            var result = await repository.Auth(loginVM);
+            if (result.Token != null)
+            {
+                HttpContext.Session.SetString("JWToken", result.Token);
+
+            }
             return Json(result);
         }
 
@@ -32,33 +37,13 @@ namespace Client.Controllers
         {
             return View();
         }
-=======
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Client.Controllers
-{
-    public class AccountController : Controller
-    {
->>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
         public IActionResult Login()
         {
             return View();
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
         public IActionResult Register()
         {
             return View();
         }
-<<<<<<< HEAD
-=======
-
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
->>>>>>> 099c4fb3a26df2f4332956178d03e21484f9891c
     }
 }
