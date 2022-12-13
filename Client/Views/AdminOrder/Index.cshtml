@@ -90,7 +90,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="quickForm" novalidate="novalidate">
+                <form id="quickForm">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nameEdit">Delivery Status</label>
@@ -99,9 +99,8 @@
                                 <option value="sedangDikirim">Sedang Diproses</option>
                                 <option value="sudahDikirim">Sudah Dikirim</option>
                             </select> *@            
-                            <input type="text" name="deliveryStatus" class="form-control is-invalid" id="statusDeliveryEdit"
-                                   placeholder="Enter Delivery Status" aria-describedby="name-error">
-                            <span id="name-error" class="error invalid-feedback">Please update delivery status!</span>
+                            <input type="text" name="deliveryStatus" class="form-control" id="statusDeliveryEdit"
+                                   placeholder="Enter Delivery Status">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -123,7 +122,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="quickForm" novalidate="novalidate">
+                <form id="quickForm">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="paymentEdit">Payment Status</label>
@@ -131,9 +130,8 @@
                                 <option value="belumDibayar">Belum Dibayar</option>
                                 <option value="sudahDibayar">Sudah Dibayar</option>
                             </select>*@
-                            <input type="text" name="paymentEdit" class="form-control is-invalid" id="statusPaymentEdit"
-                                   placeholder="Enter Payment Status" aria-describedby="name-error">
-                            <span id="name-error" class="error invalid-feedback">Please update payment status!</span>
+                            <input type="text" name="paymentEdit" class="form-control" id="statusPaymentEdit"
+                                   placeholder="Enter Payment Status" >
                         </div>
                         <div class="form-group">
                             <label for="nameEdit">Received Status</label>
@@ -141,9 +139,8 @@
                                 <option value="belumDiterima">Belum Diterima</option>
                                 <option value="sudahDiterima">Sudah Diterima</option>
                             </select>*@
-                            <input type="text" name="nameEdit" class="form-control is-invalid" id="statusReceivedEdit"
-                                   placeholder="Enter Received Status" aria-describedby="name-error">
-                            <span id="name-error" class="error invalid-feedback">Please update received status!</span>
+                            <input type="text" name="nameEdit" class="form-control" id="statusReceivedEdit"
+                                   placeholder="Enter Received Status">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">

@@ -16,7 +16,7 @@ namespace API.Models
         public int Stock { get; set; }
         [Required]
         public string Description { get; set; }
-        public byte[]? ProductPic { get; set; }
+        public string? ProductPic { get; set; }
         public DateTime? CreatedDate { get; set; }
         public int? CategoryId { get; set; }
         [JsonIgnore, ForeignKey("CategoryId")]

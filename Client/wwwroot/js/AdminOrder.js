@@ -297,7 +297,7 @@ function orderEdit() {
     let orderData = new Object;
     orderData.id = id
     orderData.status = $('#statusPaymentEdit').val();
-    orderData.status = $('#statusPaymentEdit').val();
+    orderData.received = $('#statusReceivedEdit').val();
 
     $.ajax({
         url: url,
